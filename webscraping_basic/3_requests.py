@@ -1,3 +1,5 @@
+# Python에서 HTML 문서 정보를 얻기 위해 사용하는 requests 라이브러리에 대해 알아본다.
+
 # pip install requests
 import requests
 # res = requests.get("http://naver.com")
