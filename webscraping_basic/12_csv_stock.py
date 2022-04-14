@@ -23,3 +23,5 @@ for page in range(1, 5):
             continue
         data = [column.get_text().strip() for column in columns]
         writer.writerow(data[:-1])
+
+f.close()
