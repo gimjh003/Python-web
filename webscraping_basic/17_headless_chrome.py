@@ -3,13 +3,16 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
 
+options = webdriver.ChromeOptions()
+options.headless = True
+options.add_argument("window-size=1920x1080")
 url = "https://play.google.com/store/movies"
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36"
 headers = {"User-Agent":user_agent, "Accept-Language":"ko-KR,ko"}
 res = requests.get(url, headers=headers)
 res.raise_for_status()
 soup = BeautifulSoup(res.text, "lxml")
-browser = webdriver.Chrome("./webscraping_basic/chromedriver.exe")
+browser = webdriver.Chrome("./webscraping_basic/chromedriver.exe", options=options)
 browser.maximize_window()
 
 # 페이지 이동
@@ -29,6 +32,7 @@ while True:
         break
     prev_height = curr_height
 
+browser.get_screenshot_as_file("google_movie.png")
 movies = soup.find_all("a", attrs={"class":"Si6A0c ZD8Cqc"})
 
 for movie in movies:
